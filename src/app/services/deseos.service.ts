@@ -7,13 +7,29 @@ import { Lista } from '../models/lista.model';
 })
 export class DeseosService {
 
-  listas: Lista[]= []; 
+  listas: Lista[] = [];
 
   constructor() {
-  
-    const lista1 = new Lista( 'Recolectar las piedras del infinito' );
-    const lista2 = new Lista( 'Que estudiar?' );
-    
-    this.listas.push( lista1 , lista2 );
+
+    this.loadLocalStorage();
+
   }
+
+  setLista(titulo: string) {
+    const nuevaLista = new Lista(titulo);
+    this.listas.push( nuevaLista );
+    this.saveLocalStorage();
+  }
+
+  saveLocalStorage() {
+    localStorage.setItem('lista', JSON.stringify(this.listas))
+  }
+
+  loadLocalStorage() {
+    if (localStorage.getItem('lista')) {
+      this.listas = JSON.parse(localStorage.getItem('lista'));
+    }
+  }
+
+
 }
