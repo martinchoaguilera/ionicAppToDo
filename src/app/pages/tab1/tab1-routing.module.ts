@@ -8,7 +8,7 @@ const routes: Routes = [
     component: Tab1Page,
   },
   {
-    path: 'agregar',
+    path: 'agregar/:idLista',
     loadChildren: () => import('../agregar/agregar.module').then( m => m.AgregarPageModule)
   }
 ];

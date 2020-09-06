@@ -17,6 +17,11 @@ export class Tab1Page {
     this.lists = deseosServices.listas;
     console.log(this.lists);
   }
+  showList( id ){
+    console.log( id );
+    this.router.navigate( [ 'agregar', id ] );
+    this.router.navigateByUrl(`/tabs/tab1/agregar/${ id }`);
+  }
 
   async agregarLista() {
 
@@ -39,19 +44,19 @@ export class Tab1Page {
         {
           text: 'Crear',
           handler: (data) => {
-
-            
             if (data.titulo.length === 0) {
               return;
             }
-              this.deseosServices.setLista(data.titulo);
+              const listaId = this.deseosServices.setLista(data.titulo);
 
+              
+              this.router.navigateByUrl( `/tabs/tab1/agregar/${ listaId }`);
               console.log( this.deseosServices.listas );
           }
           
         }
       ]
-      // this.router.navigateByUrl( '/tabs/tab1/agregar' );
+      
     });
     alert.present();
   }
