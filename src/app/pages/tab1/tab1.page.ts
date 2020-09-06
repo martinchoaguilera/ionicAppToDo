@@ -9,19 +9,10 @@ import { AlertController } from '@ionic/angular'
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  lists: any[] = [];
+  title: string= 'Pendientes';
   constructor(public deseosServices: DeseosService,
     private router: Router,
-    private alertCtrl: AlertController) {
-
-    this.lists = deseosServices.listas;
-    console.log(this.lists);
-  }
-  showList( id ){
-    console.log( id );
-    this.router.navigate( [ 'agregar', id ] );
-    this.router.navigateByUrl(`/tabs/tab1/agregar/${ id }`);
-  }
+    private alertCtrl: AlertController) {}
 
   async agregarLista() {
 
